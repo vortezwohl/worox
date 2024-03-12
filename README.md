@@ -23,7 +23,7 @@ The "methods" is a list of strings, which configures the HTTP request methods al
     }
 </reverse-proxy>
 ```
-The "port" is an Integer type, indicating the port number listened by the proxy server. The "max-content-length" is an Integer type, indicating the maximum HTTP message length supported by the proxy server (unit: Byte). The "bind" is a Map object that implements proxy by mapping paths to specific HTTP servers. The key is the proxy path corresponding to the service, and the value is the HTTP server providing the corresponding service. For example, if I have enabled the worox service on my local host's port 80 and accessed http://localhost:80/google-service/api/user, then the worox proxy will forward my request to http://www.google.com/api/user, and after receiving the response, it will forward the response to me, thus completing a request proxy.
+"port" is an Integer, which indicating the tcp port listened by worox. "max-content-length" is an Integer too, which indicating the maximum HTTP message length supported by worox (unit: Byte). "bind" is a Map which mapping paths to specific HTTP servers. The key is a proxy path corresponding to a service, and the value is the HTTP server providing the corresponding service. For example, if I have enabled the worox service on localhost:80 and send a http request to "http://localhost:80/google-service/api/user", the worox proxy will forward my request to "http://www.google.com/api/user", and after receiving responses, will forward the response to me, thus completing a request proxy.
 ### Eventually the whole conf file looks like this: 
 worox.conf
 ```xml
