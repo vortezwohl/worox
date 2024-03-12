@@ -5,7 +5,10 @@ http reverse proxy
 ### Put worox.conf beside worox-x.x.x.jar or in classpath to take effect.
 ![image](https://github.com/vortezwohl/worox/assets/117743023/890565da-a650-4fce-80a1-3b4f05493e77)
 ### Do some necessary configurations before worox boots up (values for port and max-content-length are necessary)
-![image](https://github.com/vortezwohl/worox/assets/117743023/343ecf7d-57d0-4854-ab8d-b7855342abcf)
+![image](https://github.com/vortezwohl/worox/assets/117743023/37f1f2ad-b9aa-4b51-b040-0a60e9807f12)
+### Run worox
+![image](https://github.com/vortezwohl/worox/assets/117743023/e38d0d32-a1cb-48ad-bf5d-48e231fe2cdf)
+
 ## To Compose Configurations
 There are two sections in config file: \<http-filter\>\</http-filter\> and \<reverse-proxy\>\</reverse-proxy\>. The two sections are configured for the HTTP message filter and reverse proxy handler.
 ### \<http-filter\>
