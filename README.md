@@ -1,31 +1,25 @@
 # worox
 http reverse proxy
-
-
 ## worox.conf
-The configuration file has two sections: one is the <http-filter> section, and the other is the <reverse-proxy> section. The two sections are respectively configured for the HTTP packet filter and the reverse proxy processor.
-
-The configuration items and notes for each section are as follows:
-
-<http-filter> Configuration Items
-```html
+The configuration file has two sections: <http-filter></http-filter> and <reverse-proxy></reverse-proxy>. The two sections are configured for the HTTP message filter and reverse proxy handler.
+### \<http-filter\>
+```xml
 <http-filter>
-  methods: ["GET","POST"],
-  headers: {
-    "Connection": ["keep-alive","something"]
-  }
+    methods: ["GET","POST"],
+    headers: {
+        "Connection": ["keep-alive","something"]
+    }
 </http-filter>
 ```
 The "methods" is a list of strings, which configures the HTTP request methods allowed by the filter. Currently, only "GET" and "POST" are supported. The "headers" is a Map object containing HTTP header information. For example, "Connection": ["keep-alive","something"] means that the request header must have at least one "Connection" field, and at least one "Connection" field corresponds to the value of "keep-alive" or "something". If the request method is not configured in the configuration file, or the request header lacks a specific header, or the value of the specific header cannot be found in the configured specified values, then the HTTP request will be marked as a dangerous request and filtered by the packet filter, and will not be forwarded to the proxy processor.
-
-<reverse-proxy> Configuration Items
+### \<reverse-proxy\>
 ```xml
 <reverse-proxy>
-  port: 20386,
-  max-content-length: 1048576,
-  bind: {
-    "xynth-backend": "http://localhost:8080",
-    "google-service": "http://www.google.com"
+    port: 20386,
+    max-content-length: 1048576,
+    bind: {
+        "xynth-backend": "http://localhost:8080",
+        "google-service": "http://www.google.com"
     }
 </reverse-proxy>
 ```
