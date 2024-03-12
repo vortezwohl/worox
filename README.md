@@ -1,6 +1,6 @@
 # worox
 http reverse proxy
-## Configuration File - worox.conf (Put worox.conf beside worox-x.x.x.jar to take effect. While developping, you can also put it in classpath.)
+## Configuration File (Put worox.conf beside worox-x.x.x.jar or in classpath to take effect.)
 There are two sections in config file: \<http-filter\>\</http-filter\> and \<reverse-proxy\>\</reverse-proxy\>. The two sections are configured for the HTTP message filter and reverse proxy handler.
 ### \<http-filter\>
 ```xml
