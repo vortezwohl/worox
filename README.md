@@ -5,7 +5,7 @@ Based on [Jentiti](https://github.com/vortezwohl/Jentiti), [Netty](https://githu
 #### Put worox.conf beside worox-x.x.x.jar or in classpath to take effect.
 ![image](https://github.com/vortezwohl/worox/assets/117743023/890565da-a650-4fce-80a1-3b4f05493e77)
 #### Do some necessary configurations before worox boots up (values for port and max-content-length are necessary).
-![image](https://github.com/vortezwohl/worox/assets/117743023/37f1f2ad-b9aa-4b51-b040-0a60e9807f12)
+![image](https://github.com/vortezwohl/worox/assets/117743023/5127fae5-7100-4efd-82f1-719adfc79002)
 #### Run worox.
 ![image](https://github.com/vortezwohl/worox/assets/117743023/e38d0d32-a1cb-48ad-bf5d-48e231fe2cdf)
 #### Start a service to test (localhost:8080).
@@ -37,12 +37,12 @@ The "methods" is a list of strings, which configures the HTTP request methods al
     port: 20386,
     max-content-length: 1048576,
     bind: {
-        "xynth-backend": "http://localhost:8080",
-        "google-service": "http://www.google.com"
+        "xynth-backend": ["http://localhost:8080","http://localhost:8081","http://localhost:8082"],
+        "google": ["http://www.google.com"]
     }
 </reverse-proxy>
 ```
-"port" is an Integer, which indicating the tcp port listened by worox. "max-content-length" is an Integer too, which indicating the maximum HTTP message length supported by worox (unit: Byte). "bind" is a Map which mapping paths to specific HTTP servers. The key is a proxy path corresponding to a service, and the value is the HTTP server providing the corresponding service. For example, if I have enabled the worox service on localhost:80 and send a http request to "http://localhost:80/google-service/api/user", the worox proxy will forward my request to "http://www.google.com/api/user", and after receiving responses, will forward the response to me, thus completing a request proxy.
+"port" is an Integer, which indicating the tcp port listened by worox. "max-content-length" is an Integer too, which indicating the maximum HTTP message length supported by worox (unit: Byte). "bind" is a Map which mapping paths to specific HTTP servers. The key is a proxy path corresponding to a service, and the value is the HTTP servers providing the corresponding service (One path can be mapped to several HTTP servers to enable load balancing). For example, if I have enabled the worox service on localhost:80 and send a http request to "http://localhost:20386/google-service/api/user", the worox proxy will forward my request to "http://www.google.com/api/user", and after receiving responses, will forward the response to me, thus completing a request proxy. If I send requests to "http://localhost:20386/xynth-backend/api/user", they would be separately sent to localhost:8080 localhost:8081 localhost:8082, so the data stream is distributed.
 #### Eventually the whole conf file looks like this: 
 worox.conf
 ```xml
@@ -56,8 +56,8 @@ worox.conf
     port: 20386,
     max-content-length: 1048576,
     bind: {
-        "xynth-backend": "http://localhost:8080",
-        "google-service": "http://www.google.com"
+        "xynth-backend": ["http://localhost:8080","http://localhost:8081","http://localhost:8082"],
+        "google": ["http://www.google.com"]
     }
 </reverse-proxy>
 ```
