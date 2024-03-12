@@ -17,8 +17,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
 
 public class RProxyHandler extends ChannelInboundHandlerAdapter {
 
@@ -26,7 +28,7 @@ public class RProxyHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        Map<String, String> bind = ((HttpRProxyConfReader) JentitiContext.get(HttpRProxyConfReader.class)).getConf().getBind();
+        Map<String, List<String>> bind = ((HttpRProxyConfReader) JentitiContext.get(HttpRProxyConfReader.class)).getConf().getBind();
         long timestampWhenStart = System.currentTimeMillis();
         FullHttpRequest request = (FullHttpRequest) msg;
         logger.info("HTTP request received from client > version="+ request.protocolVersion() +" method="+request.method()+" path="+request.uri());
@@ -34,8 +36,8 @@ public class RProxyHandler extends ChannelInboundHandlerAdapter {
         // reverse proxy mapping
         String[] pathSplit = request.uri().split("/");
         String rproxyRoute = pathSplit[1];
-        String httpServiceProvider = bind.get(rproxyRoute);
-        if(httpServiceProvider == null) {
+        List<String> httpServiceProviders = bind.get(rproxyRoute);
+        if(httpServiceProviders == null) {
             FullHttpResponse response = new DefaultFullHttpResponse(
                     request.protocolVersion(),
                     HttpResponseStatus.NOT_FOUND,
@@ -45,7 +47,12 @@ public class RProxyHandler extends ChannelInboundHandlerAdapter {
             ctx.writeAndFlush(response);
         } else {
             int routeStringSize = rproxyRoute.length()+1;
-            String uri = httpServiceProvider + request.uri().substring(routeStringSize);
+
+            // random load balancing
+            Random random = new Random();
+            String serviceProvider = httpServiceProviders.get(random.nextInt(httpServiceProviders.size()));
+
+            String uri = serviceProvider + request.uri().substring(routeStringSize);
             ResponseEntity<String> restResponse = null;
             switch (request.method().name()) {
                 case "GET":
@@ -60,6 +67,7 @@ public class RProxyHandler extends ChannelInboundHandlerAdapter {
                     restResponse = restTemplate.postForEntity(uri,requestEntity,String.class);
                     break;
             }
+
             logger.info("HTTP response received from server < status=" + Objects.requireNonNull(restResponse).getStatusCode().value() + " body=" + restResponse.getBody());
             FullHttpResponse response = new DefaultFullHttpResponse(
                     request.protocolVersion(),
