@@ -1,7 +1,7 @@
 # worox
 http reverse proxy
 ## worox.conf
-The configuration file has two sections: <http-filter></http-filter> and <reverse-proxy></reverse-proxy>. The two sections are configured for the HTTP message filter and reverse proxy handler.
+There are two sections in config file: \<http-filter\>\</http-filter\> and \<reverse-proxy\>\</reverse-proxy\>. The two sections are configured for the HTTP message filter and reverse proxy handler.
 ### \<http-filter\>
 ```xml
 <http-filter>
