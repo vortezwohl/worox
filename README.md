@@ -33,7 +33,6 @@ worox.conf
         "Connection": ["keep-alive","something"]
     }
 </http-filter>
-
 <reverse-proxy>
     port: 20386,
     max-content-length: 1048576,
