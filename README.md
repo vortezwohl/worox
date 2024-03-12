@@ -1,4 +1,4 @@
-# worox
+# Worox
 An HTTP reverse proxy.
 Based on [Jentiti](https://github.com/vortezwohl/Jentiti), [Netty](https://github.com/netty/netty), [SpringCore/SpringWeb](https://github.com/spring-projects/spring-framework).
 ## Get Started
