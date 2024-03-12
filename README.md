@@ -1,6 +1,6 @@
 # worox
 An HTTP reverse proxy.
-Based on [Jentiti](https://github.com/vortezwohl/Jentiti), [Netty](https://github.com/netty/netty), [Spring Core and Spring Web](https://github.com/spring-projects/spring-framework)
+Based on [Jentiti](https://github.com/vortezwohl/Jentiti), [Netty](https://github.com/netty/netty), [SpringCore/SpringWeb](https://github.com/spring-projects/spring-framework).
 ## Get Started
 #### Put worox.conf beside worox-x.x.x.jar or in classpath to take effect.
 ![image](https://github.com/vortezwohl/worox/assets/117743023/890565da-a650-4fce-80a1-3b4f05493e77)
