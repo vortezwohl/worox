@@ -10,7 +10,7 @@ Based on [Jentiti](https://github.com/vortezwohl/Jentiti), [Netty](https://githu
 ![image](https://github.com/vortezwohl/worox/assets/117743023/e38d0d32-a1cb-48ad-bf5d-48e231fe2cdf)
 #### Start a service to test (localhost:8080).
 ![image](https://github.com/vortezwohl/worox/assets/117743023/b65a368e-a236-4216-b2cf-77945812a3cb)
-#### Send a http request to worox and response is successfully received.
+#### Send an http request to worox and response is successfully received.
 ![image](https://github.com/vortezwohl/worox/assets/117743023/b7a956ac-c1b6-4611-9e50-dc1e242b03f8)
 #### Check logs of worox.
 ![image](https://github.com/vortezwohl/worox/assets/117743023/16f74afb-021e-4391-8066-6118ee884f9d)
