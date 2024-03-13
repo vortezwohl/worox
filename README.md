@@ -15,7 +15,7 @@ Based on [Jentiti](https://github.com/vortezwohl/Jentiti), [Netty](https://githu
 #### Check logs of worox.
 ![image](https://github.com/vortezwohl/worox/assets/117743023/16f74afb-021e-4391-8066-6118ee884f9d)
 #### Send a bad http request (which doesn't matches the rules of filtering handler).
-I sent a PUT request which wasn't allowed according to worox.conf. As you could see, the response received is "Filtered".
+I sent a PUT request which wasn't allowed according to worox.conf. As you could see, the response body received is "Filtered".
 ![image](https://github.com/vortezwohl/worox/assets/117743023/312a28d7-d710-4bcd-9869-d16cad77d0fc)
 A WARN log was appended into stdout.
 ![image](https://github.com/vortezwohl/worox/assets/117743023/4536b4fe-c85c-47a3-a66e-0d13420f004e)
